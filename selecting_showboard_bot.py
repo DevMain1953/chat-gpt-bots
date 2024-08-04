@@ -84,27 +84,27 @@ async def get_snowboard_info() -> str:
     :return: A text with snowboard info.
     :rtype: str
     """
-    user_info = {}
-    user_info["Имя"] = await get_user_input_using_prompt("Как вас зовут?")
-    user_info["Опыт"] = await get_user_input_using_prompt(
+    user_and_snowboard_info = {}
+    user_and_snowboard_info["Имя"] = await get_user_input_using_prompt("Как вас зовут?")
+    user_and_snowboard_info["Опыт"] = await get_user_input_using_prompt(
         "Каков ваш опыт в сноубординге? (Начинающий, Средний, Опытный)"
     )
-    user_info["Цель покупки"] = await get_user_input_using_prompt(
+    user_and_snowboard_info["Цель покупки"] = await get_user_input_using_prompt(
         "Для чего вы покупаете сноуборд? (Например: катание в парке, спуск с гор, фрирайд и т.д.)"
     )
-    user_info["Дополнительная информация"] = await get_user_input_using_prompt(
-        "Есть ли другая полезная информация, которую вы хотите сообщить?"
+    user_and_snowboard_info["Дополнительная информация"] = (
+        await get_user_input_using_prompt(
+            "Есть ли другая полезная информация, которую вы хотите сообщить?"
+        )
+    )
+    user_and_snowboard_info["Рекомендация"] = await get_recommendations(
+        user_and_snowboard_info.get("Имя"),
+        user_and_snowboard_info.get("Опыт"),
+        user_and_snowboard_info.get("Цель покупки"),
+        user_and_snowboard_info.get("Дополнительная информация"),
     )
 
-    snowboard_info = {}
-    snowboard_info["Рекомендация"] = await get_recommendations(
-        user_info["Имя"],
-        user_info["Опыт"],
-        user_info["Цель покупки"],
-        user_info["Дополнительная информация"],
-    )
-
-    return json.dumps(snowboard_info, ensure_ascii=False, indent=4)
+    return json.dumps(user_and_snowboard_info, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
