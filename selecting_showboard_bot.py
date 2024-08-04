@@ -97,7 +97,7 @@ async def get_snowboard_info() -> str:
     )
 
     snowboard_info = {}
-    snowboard_info["Рекомендация"] = get_recommended_snowboards(
+    snowboard_info["Рекомендация"] = await get_recommended_snowboards(
         user_info["Имя"],
         user_info["Опыт"],
         user_info["Цель покупки"],
