@@ -13,7 +13,7 @@ async_client = AsyncOpenAI(
 )
 
 
-def get_recommended_snowboard(experience: str, goal: str) -> str:
+def get_recommended_snowboards(experience: str, goal: str) -> str:
     """
     Returns text about recommend snowboard based on user experience and goal of buying.
 
@@ -92,7 +92,7 @@ async def get_snowboard_info() -> str:
     user_info["Дополнительная информация"] = await get_user_input_using_prompt(
         "Есть ли другая полезная информация, которую вы хотите сообщить?"
     )
-    user_info["Рекомендация"] = get_recommended_snowboard(
+    user_info["Рекомендация"] = get_recommended_snowboards(
         user_info["Опыт"], user_info["Цель покупки"]
     )
 
