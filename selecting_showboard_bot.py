@@ -13,11 +13,11 @@ async_client = AsyncOpenAI(
 )
 
 
-async def get_recommended_snowboards(
+async def get_recommendations(
     name: str, experience: str, goal: str, additional_info: str
 ) -> str:
     """
-    Returns text about recommend snowboard based on user experience, goal of buying and additional info.
+    Returns text with recommendations based on user experience, goal of buying and additional info.
 
     :param name: A name of user.
     :type name: str
@@ -31,7 +31,7 @@ async def get_recommended_snowboards(
     :param additional_info: An additional info from user.
     :type additional_info: str
 
-    :return: A text about recommend snowboard based on user experience, goal of buying and additional info.
+    :return: A text with recommendations based on user experience, goal of buying and additional info.
     :rtype: str
     """
     conversation = [
@@ -97,7 +97,7 @@ async def get_snowboard_info() -> str:
     )
 
     snowboard_info = {}
-    snowboard_info["Рекомендация"] = await get_recommended_snowboards(
+    snowboard_info["Рекомендация"] = await get_recommendations(
         user_info["Имя"],
         user_info["Опыт"],
         user_info["Цель покупки"],
